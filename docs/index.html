@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="LeakGoblin Documentation - The open-source AI-prompt security CLI. Scan locally, redact secrets, and review before pasting into AI models.">
+  <title>LeakGoblin 🛡️ Documentation | Open-Source AI Prompt Security CLI</title>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Favicon / Icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+</head>
+<body>
+
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- App Header / Top Navigation -->
+  <header class="app-header" role="banner">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <button id="mobile-nav-toggle" class="btn btn-icon mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <a href="#overview" class="brand" aria-label="LeakGoblin Homepage">
+        <span class="brand-logo" aria-hidden="true">🛡️</span>
+        <span class="brand-text">LeakGoblin</span>
+      </a>
+    </div>
+
+    <div class="header-controls">
+      <!-- Search Component -->
+      <div class="search-container" role="search">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="search" id="search-input" class="search-input" placeholder="Search docs (e.g. AWS, config)..." aria-label="Search documentation content">
+        <div id="search-results-dropdown" class="search-results-dropdown" aria-live="polite"></div>
+      </div>
+
+      <!-- Theme Switcher -->
+      <button id="theme-toggle-btn" class="btn btn-icon" aria-label="Toggle light or dark theme" title="Toggle theme">
+        <span id="theme-icon" aria-hidden="true">☀️</span>
+      </button>
+
+      <!-- GitHub Link -->
+      <a href="https://github.com/lovixcloud/leakgoblin" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Layout Container -->
+  <div class="layout-container">
+
+    <!-- Left Sidebar Navigation -->
+    <nav id="sidebar-nav" class="sidebar-nav" aria-label="Main Navigation">
+      <div class="nav-section">
+        <div class="nav-section-title">Getting Started</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#overview" class="nav-link active">Overview</a></li>
+          <li class="nav-item"><a href="#quick-start" class="nav-link">Quick Start</a></li>
+          <li class="nav-item"><a href="#installation" class="nav-link">Installation</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Interactive Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#playground" class="nav-link">Live Secret Playground</a></li>
+          <li class="nav-item"><a href="#config-builder" class="nav-link">Config File Generator</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Usage & Reference</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#usage-examples" class="nav-link">Usage Workflows</a></li>
+          <li class="nav-item"><a href="#detections" class="nav-link">What It Detects</a></li>
+          <li class="nav-item"><a href="#configuration" class="nav-link">Configuration Guide</a></li>
+          <li class="nav-item"><a href="#cli-reference" class="nav-link">CLI Commands</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-title">Architecture & Community</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#security" class="nav-link">Security Model</a></li>
+          <li class="nav-item"><a href="#troubleshooting" class="nav-link">Troubleshooting</a></li>
+          <li class="nav-item"><a href="#contributing" class="nav-link">Contributing</a></li>
+          <li class="nav-item"><a href="#sponsorship" class="nav-link">Sponsorship</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="main-content" role="main" tabindex="-1">
+
+      <!-- Hero Banner -->
+      <section id="overview" class="hero-banner">
+        <div class="hero-logo" aria-hidden="true">🛡️</div>
+        <h1>LeakGoblin</h1>
+        <p class="hero-subtitle">
+          The funny, genuinely useful open-source AI-prompt security CLI.
+          The goblin guard that protects your secrets before you paste into ChatGPT, coding agents, or issue trackers.
+        </p>
+        <div class="hero-actions">
+          <a href="#playground" class="btn btn-primary">Try Live Playground</a>
+          <a href="#quick-start" class="btn btn-outline">Quick Start Guide</a>
+        </div>
+      </section>
+
+      <!-- Core Promise Callout -->
+      <div class="callout" style="border-left-color: var(--primary-color);">
+        <div class="callout-title">
+          <span aria-hidden="true">💡</span> Core Promise
+        </div>
+        <p style="margin-bottom: 0;">
+          <strong>Scan locally → Redact sensitive-looking values → Review before sharing.</strong><br>
+          100% offline security with zero cloud uploads, zero subscriptions, and zero telemetry.
+        </p>
+      </div>
+
+      <!-- Quick Start -->
+      <section id="quick-start">
+        <h2>Quick Start</h2>
+        <p>Run LeakGoblin instantly with <code>npx</code> or install it globally via npm:</p>
+
+<pre><code># Scan text before pasting to AI
+cat prompt.txt | leakgoblin scan --stdin
+echo "api_key = AKIAIOSFODNN7EXAMPLE" | leakgoblin scan --stdin
+
+# Get sanitized version safe to share
+cat prompt.txt | leakgoblin sanitize --stdin > safe_prompt.txt
+
+# Scan a repository directory
+leakgoblin scan .
+leakgoblin scan . --format json > report.json
+
+# CI Mode (exit 1 if secrets found)
+leakgoblin scan . --quiet
+echo $?  # 0 = clean, 1 = secrets found, 2 = error</code></pre>
+      </section>
+
+      <!-- Installation -->
+      <section id="installation">
+        <h2>Installation</h2>
+        <p><strong>System Requirements:</strong> Node.js &gt;= 20.0.0 (Recommended: Node 24 LTS / Node 22 LTS).</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Package Manager</th>
+                <th>Global Installation Command</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>npm</strong></td>
+                <td><code>npm install -g leakgoblin</code></td>
+              </tr>
+              <tr>
+                <td><strong>yarn</strong></td>
+                <td><code>yarn global add leakgoblin</code></td>
+              </tr>
+              <tr>
+                <td><strong>pnpm</strong></td>
+                <td><code>pnpm add -g leakgoblin</code></td>
+              </tr>
+              <tr>
+                <td><strong>bun</strong></td>
+                <td><code>bun add -g leakgoblin</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Installing From Source</h3>
+<pre><code>git clone https://github.com/lovixcloud/leakgoblin
+cd leakgoblin
+npm install
+npm run build
+npm link
+leakgoblin --help</code></pre>
+
+        <h3>Verifying Installation</h3>
+<pre><code>leakgoblin --version
+echo "test AKIAIOSFODNN7EXAMPLE" | leakgoblin scan --stdin</code></pre>
+      </section>
+
+      <!-- Interactive Playground -->
+      <section id="playground">
+        <h2>Interactive Secret Playground</h2>
+        <p>Test LeakGoblin's secret scanner and sanitizer in real-time right here in your browser! All processing runs client-side inside this webpage.</p>
+
+        <div class="playground-container">
+          <div class="playground-controls">
+            <div style="flex: 1; min-width: 200px;">
+              <label for="playground-sample-select" class="form-label">Load Preset Sample:</label>
+              <select id="playground-sample-select" class="form-control" aria-label="Select sample prompt">
+                <option value="aws">AWS Credentials & Lambda Script</option>
+                <option value="github">GitHub Personal Access Tokens</option>
+                <option value="database">PostgreSQL Database Connection</option>
+                <option value="mixed">Mixed API Keys & JWT Bearer Header</option>
+              </select>
+            </div>
+            <div style="display: flex; align-items: flex-end;">
+              <button id="playground-sanitize-btn" class="btn btn-primary" title="Copy Sanitized Prompt">Copy Sanitized Prompt</button>
+            </div>
+          </div>
+
+          <div class="playground-grid">
+            <div class="form-group">
+              <label for="playground-input" class="form-label">Input Text (Contains Secrets):</label>
+              <textarea id="playground-input" class="form-control" rows="8" aria-label="Input text for secret scan"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="playground-output" class="form-label">Sanitized Output (Safe to Share):</label>
+              <textarea id="playground-output" class="form-control" rows="8" readonly aria-label="Sanitized output result"></textarea>
+            </div>
+          </div>
+
+          <div id="playground-findings" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <!-- What It Detects -->
+      <section id="detections">
+        <h2>What LeakGoblin Detects</h2>
+        <p>LeakGoblin scans text using format-specific signatures and conservative heuristics. Findings are never logged in raw form.</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Pattern / Target Examples</th>
+                <th>Severity</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Private Keys</strong></td>
+                <td><code>-----BEGIN RSA PRIVATE KEY-----</code></td>
+                <td><span class="badge badge-critical">Critical</span></td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><strong>Cloud Credentials</strong></td>
+                <td>AWS <code>AKIA...</code>, <code>aws_secret_access_key</code></td>
+                <td><span class="badge badge-critical">Critical</span> / <span class="badge badge-high">High</span></td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><strong>API Keys</strong></td>
+                <td>GitHub (<code>ghp_</code>), Stripe (<code>sk_live_</code>), Slack (<code>xoxb-</code>), Google (<code>AIza...</code>), OpenAI (<code>sk-...</code>)</td>
+                <td><span class="badge badge-critical">Critical</span> / <span class="badge badge-high">High</span></td>
+                <td>High / Medium</td>
+              </tr>
+              <tr>
+                <td><strong>Bearer & JWT</strong></td>
+                <td><code>Authorization: Bearer ...</code>, <code>eyJ...</code></td>
+                <td><span class="badge badge-high">High</span> / <span class="badge badge-medium">Medium</span></td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td><strong>Passwords</strong></td>
+                <td><code>password = "..."</code>, <code>passwd: ...</code></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td><strong>Database Strings</strong></td>
+                <td><code>mongodb://</code>, <code>postgres://</code>, <code>mysql://</code>, <code>redis://</code></td>
+                <td><span class="badge badge-critical">Critical</span></td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><strong>Environment Vars</strong></td>
+                <td><code>GITHUB_API_KEY=...</code>, <code>*_SECRET=...</code></td>
+                <td><span class="badge badge-high">High</span></td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td><strong>Heuristics</strong></td>
+                <td>32+ character high-entropy random strings</td>
+                <td><span class="badge badge-low">Low</span></td>
+                <td>Low</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Configuration Generator -->
+      <section id="config-builder">
+        <h2>Interactive Configuration File Generator</h2>
+        <p>Customize detection thresholds, ignore rules, and custom regex rules by building your <code>leakgoblin.config.json</code>:</p>
+
+        <div class="config-builder">
+          <form id="config-builder-form" onsubmit="event.preventDefault();">
+            <div class="playground-grid">
+              <div class="form-group">
+                <label for="cfg-severity" class="form-label">Severity Threshold:</label>
+                <select id="cfg-severity" class="form-control">
+                  <option value="low">low (report all findings)</option>
+                  <option value="medium" selected>medium (ignore low severity)</option>
+                  <option value="high">high (high & critical only)</option>
+                  <option value="critical">critical (critical only)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="cfg-confidence" class="form-label">Confidence Threshold:</label>
+                <select id="cfg-confidence" class="form-control">
+                  <option value="low">low (include heuristics)</option>
+                  <option value="medium" selected>medium (ignore low-confidence)</option>
+                  <option value="high">high (signatures only)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cfg-max-size" class="form-label">Max File Size (MB):</label>
+              <input type="number" id="cfg-max-size" class="form-control" value="5" min="1" max="50">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Default Directory Exclusions:</label>
+              <div class="checkbox-group">
+                <input type="checkbox" id="cfg-ex-git" checked>
+                <label for="cfg-ex-git"><code>.git</code></label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="cfg-ex-node" checked>
+                <label for="cfg-ex-node"><code>node_modules</code></label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="cfg-ex-dist" checked>
+                <label for="cfg-ex-dist"><code>dist / build</code></label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="cfg-ex-fixtures">
+                <label for="cfg-ex-fixtures"><code>fixtures</code></label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cfg-allowlist-patterns" class="form-label">Allowlist Regex Patterns (one per line):</label>
+              <textarea id="cfg-allowlist-patterns" class="form-control" rows="2" placeholder="^AKIAIOSFODNN7EXAMPLE$"></textarea>
+            </div>
+          </form>
+
+          <div style="margin-top: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <label for="config-json-preview" class="form-label">Generated <code>leakgoblin.config.json</code>:</label>
+              <button id="config-download-btn" class="btn btn-sm btn-primary">Download JSON</button>
+            </div>
+            <pre><code id="config-json-preview"></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- Configuration Guide -->
+      <section id="configuration">
+        <h2>Configuration Discovery Order</h2>
+        <p>LeakGoblin automatically resolves configuration files in the following hierarchy:</p>
+        <ol style="margin-left: 1.5rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          <li>Custom path explicitly provided via <code>--config &lt;path&gt;</code></li>
+          <li><code>leakgoblin.config.json</code> in the current directory or parent directories</li>
+          <li><code>.leakgoblinrc.json</code> or <code>.leakgoblinrc</code></li>
+          <li>Built-in defaults</li>
+        </ol>
+      </section>
+
+      <!-- CLI Reference -->
+      <section id="cli-reference">
+        <h2>CLI Command Reference</h2>
+
+        <h3><code>leakgoblin scan [target]</code></h3>
+        <p>Scans stdin, a file, or a directory for sensitive credentials.</p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Option</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--stdin</code></td><td>Read input directly from standard input</td></tr>
+              <tr><td><code>--format &lt;text|json&gt;</code></td><td>Output formatting (default: text)</td></tr>
+              <tr><td><code>--exclude &lt;patterns...&gt;</code></td><td>Additional path exclusion patterns</td></tr>
+              <tr><td><code>--verbose</code></td><td>Show skipped files and diagnostic messages</td></tr>
+              <tr><td><code>--config &lt;path&gt;</code></td><td>Specify custom configuration file path</td></tr>
+              <tr><td><code>--no-color</code></td><td>Disable terminal ANSI colors</td></tr>
+              <tr><td><code>--quiet</code></td><td>Quiet mode for CI (suppresses stdout, relies on exit code)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><code>leakgoblin sanitize</code></h3>
+        <p>Reads stdin and outputs a redacted version where all detected secrets are replaced with <code>[REDACTED:CATEGORY:RULE_ID]</code>.</p>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr><th>Option</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--stdin</code></td><td>Read input from stdin (default)</td></tr>
+              <tr><td><code>--no-summary</code></td><td>Suppress summary line printed to stderr</td></tr>
+              <tr><td><code>--config &lt;path&gt;</code></td><td>Specify custom config file path</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Exit Codes</h3>
+        <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+          <li><code>0</code>: Clean — No secrets detected or sanitize succeeded.</li>
+          <li><code>1</code>: Secrets Found — Scan detected suspicious secrets.</li>
+          <li><code>2</code>: Error — Invalid config, file missing, or stdin exceeded size limit.</li>
+        </ul>
+      </section>
+
+      <!-- Security Model -->
+      <section id="security">
+        <h2>Security & Local-First Model</h2>
+        <div class="callout">
+          <div class="callout-title">🛡️ Goblin Security Principles</div>
+          <ul style="margin-left: 1.25rem; margin-top: 0.5rem; color: var(--text-secondary);">
+            <li><strong>Local-only Execution:</strong> Zero network requests, zero telemetry, zero analytics.</li>
+            <li><strong>Safe Logging:</strong> All findings mask secrets (e.g. <code>AKIA...LE</code>). Raw secret values are stripped before JSON output.</li>
+            <li><strong>Synthetic Canary Values:</strong> All internal unit tests use fake canary credentials (e.g. <code>AKIAIOSFODNN7EXAMPLE</code>).</li>
+            <li><strong>Best-Effort Filter:</strong> Signature matching is conservative; always perform manual review before sharing sensitive logs.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section id="troubleshooting">
+        <h2>Troubleshooting Guide</h2>
+
+        <h4><code>stdin too large (&gt;10MB)</code></h4>
+        <p>For stdin safety, inputs above 10MB are blocked. Use file scan mode instead: <code>leakgoblin scan ./large.log</code> or adjust <code>maxFileSizeMB</code> in config.</p>
+
+        <h4>False Positives on High Entropy Strings</h4>
+        <p>Generic high-entropy strings carry <code>severity: low</code> and <code>confidence: low</code>. Raise threshold in your config: <code>"confidenceThreshold": "medium"</code> or add pattern to <code>allowlist</code>.</p>
+
+        <h4>Terminal Colors Not Rendering</h4>
+        <p>Ensure your terminal supports TTY colors, or pass <code>--no-color</code> in script pipelines or CI environments.</p>
+      </section>
+
+      <!-- Contributing -->
+      <section id="contributing">
+        <h2>Contributing & Architecture</h2>
+        <p>LeakGoblin is written in TypeScript using ESM module architecture:</p>
+<pre><code>src/
+  cli.ts           # Commander CLI entrypoint & fallback parser
+  commands/        # Subcommands (scan, sanitize)
+  engine/          # Rules database, detector, redactor
+  config/          # Config file loader & schema validation
+  utils/           # File system traversal, input buffering, masking
+  reporting/       # Terminal formatters & JSON exporters
+tests/             # Vitest test suites</code></pre>
+        <p>To run unit and smoke tests locally:</p>
+<pre><code>npm test
+npm run smoke</code></pre>
+      </section>
+
+      <!-- Sponsorship -->
+      <section id="sponsorship">
+        <h2>Support & Sponsorship</h2>
+        <p>LeakGoblin is 100% free and open-source under the MIT license. If LeakGoblin saved you from a suspicious copy-paste, consider sponsoring or tossing the goblin a coffee!</p>
+        <p>Disable sponsorship notices in CLI by setting <code>LEAKGOBLIN_NO_DONATION=1</code> in your environment.</p>
+      </section>
+
+    </main>
+
+    <!-- On-Page Table of Contents (Right Sidebar) -->
+    <aside class="toc-sidebar" aria-label="On this page navigation">
+      <div class="toc-title">On This Page</div>
+      <ul class="toc-list">
+        <li class="toc-item"><a href="#overview" class="toc-link">Overview</a></li>
+        <li class="toc-item"><a href="#quick-start" class="toc-link">Quick Start</a></li>
+        <li class="toc-item"><a href="#installation" class="toc-link">Installation</a></li>
+        <li class="toc-item"><a href="#playground" class="toc-link">Live Playground</a></li>
+        <li class="toc-item"><a href="#detections" class="toc-link">What It Detects</a></li>
+        <li class="toc-item"><a href="#config-builder" class="toc-link">Config Generator</a></li>
+        <li class="toc-item"><a href="#cli-reference" class="toc-link">CLI Commands</a></li>
+        <li class="toc-item"><a href="#security" class="toc-link">Security Model</a></li>
+        <li class="toc-item"><a href="#troubleshooting" class="toc-link">Troubleshooting</a></li>
+        <li class="toc-item"><a href="#contributing" class="toc-link">Contributing</a></li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- App Footer -->
+  <footer class="app-footer" role="contentinfo">
+    <div class="footer-links">
+      <a href="#overview">Docs Home</a>
+      <a href="https://github.com/lovixcloud/leakgoblin" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+      <a href="https://github.com/lovixcloud/leakgoblin/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a>
+      <a href="#security">Security Policy</a>
+    </div>
+    <p>LeakGoblin 🛡️ — The goblin guard that protects your secrets. Built with HTML, CSS, JavaScript, and accessibility in mind.</p>
+  </footer>
+
+  <!-- Application Logic & Interactive Playground -->
+  <script src="app.js"></script>
+  <script src="playground.js"></script>
+</body>
+</html>
