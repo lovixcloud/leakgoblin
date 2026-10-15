@@ -38,10 +38,10 @@ function getVersion() {
         // dist/cli.js -> ../package.json
         const pkgPath = path.resolve(__dirname, '../package.json');
         const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
-        return pkg.version || '0.1.1.0';
+        return pkg.version || '0.1.2';
     }
     catch {
-        return '0.1.1.0';
+        return '0.1.2';
     }
 }
 const VERSION = getVersion();
