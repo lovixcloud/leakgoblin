@@ -1,5 +1,7 @@
 # LeakGoblin 🛡️
 
+![LeakGoblin image placeholder](./assets/leakgoblin.png)
+
 > **Scan locally. Redact sensitive-looking values. Review before sharing.**
 
 A funny, genuinely useful open-source AI-prompt security CLI. The goblin guard that protects your secrets before you paste into ChatGPT, coding agents, chatbots, or issue trackers.
