@@ -38,10 +38,10 @@ function getVersion() {
         // dist/cli.js -> ../package.json
         const pkgPath = path.resolve(__dirname, '../package.json');
         const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
-        return pkg.version || '0.1.0';
+        return pkg.version || '0.1.1.0';
     }
     catch {
-        return '0.1.0';
+        return '0.1.1.0';
     }
 }
 const VERSION = getVersion();
@@ -189,7 +189,7 @@ Examples:
 Exit codes:
   0 = no secrets found, 1 = secrets found, 2 = error
 
-Docs: https://github.com/your-org/leakgoblin
+Docs: https://github.com/lovixcloud/leakgoblin
 `);
         process.exit(0);
     }
