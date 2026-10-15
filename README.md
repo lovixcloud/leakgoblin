@@ -296,7 +296,7 @@ node --version  # should be >=20, recommended 24
 ### Development
 
 ```bash
-git clone https://github.com/your-org/leakgoblin
+git clone https://github.com/lovixcloud/leakgoblin
 cd leakgoblin
 npm install
 npm run build
