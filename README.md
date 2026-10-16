@@ -1,6 +1,6 @@
 # LeakGoblin 🛡️
 
-![LeakGoblin image placeholder](./assets/leakgoblin.png)
+![LeakGoblin image placeholder](./assets/goblin.png)
 
 > **Scan locally. Redact sensitive-looking values. Review before sharing.**
 
@@ -11,7 +11,7 @@ A funny, genuinely useful open-source AI-prompt security CLI. The goblin guard t
      /(.-""-.)\
      |\  \/  / |
      | \ /\ /  |
-     \  \/  \/  /
+     \  \/  \//
       \  \/  /  
        \____/   
     LeakGoblin 🛡️

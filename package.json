@@ -1,6 +1,6 @@
 {
   "name": "leakgoblin",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Scan locally. Redact sensitive values. Review before sharing. A funny, genuinely useful open-source AI-prompt security CLI.",
   "type": "module",
   "bin": {
