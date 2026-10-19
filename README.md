@@ -379,6 +379,6 @@ Inspired by the need to paste safely into AI tools.
 
 ---
 
-https://github.com/lovixcloud/leakgoblin/blob/main/assets/demo.mp4
+https://github.com/lovixcloud/leakgoblin/blob/main/assets/goblins.mp4
 
 **The goblin is watching. Stay vigilant.** 🛡️
