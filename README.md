@@ -379,4 +379,6 @@ Inspired by the need to paste safely into AI tools.
 
 ---
 
+![LeakGoblin image placeholder](./assets/goblins.mp4)
+
 **The goblin is watching. Stay vigilant.** 🛡️
