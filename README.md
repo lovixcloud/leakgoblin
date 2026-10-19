@@ -378,7 +378,7 @@ Built with:
 Inspired by the need to paste safely into AI tools.
 
 ---
-
+## 📺 Watch Demo:
 [![Watch Demo](https://img.youtube.com/vi/fGm6oAw1SNQ/maxresdefault.jpg)](https://youtu.be/fGm6oAw1SNQ)
 
 **The goblin is watching. Stay vigilant.** 🛡️
