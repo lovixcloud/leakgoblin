@@ -43,7 +43,7 @@ function getVersion(): string {
     const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
     return pkg.version || '0.1.4';
   } catch {
-    return '0.1.3';
+    return '0.1.4';
   }
 }
 
