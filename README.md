@@ -340,8 +340,9 @@ If it saved you from a suspicious copy-paste:
 - Sponsorship funds support maintenance, test coverage, new detection rules, docs, and security reviews
 - No paywall, no hidden features
 - Disable donation message: `LEAKGOBLIN_NO_DONATION=1`
+- 👉 https://www.patreon.com/lovix
 
-See `SPONSORS.md` and `.github/FUNDING.yml` (placeholder until maintainer configures real links).
+Sponsors are credited below (opt-in).
 
 ### Limitations & Honest Disclosures
 
