@@ -38,10 +38,10 @@ function getVersion() {
         // dist/cli.js -> ../package.json
         const pkgPath = path.resolve(__dirname, '../package.json');
         const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
-        return pkg.version || '0.1.2';
+        return pkg.version || '0.1.4';
     }
     catch {
-        return '0.1.2';
+        return '0.1.4';
     }
 }
 const VERSION = getVersion();
@@ -50,7 +50,7 @@ const GOBLIN_BANNER = `
  /(.-""-.)\\
  |\\  \\/  / |
  | \\ /\\ /  |
- \\  \\/  \\/  /
+ \\  \\/  \\//
   \\  \\/  /
    \\____/
  LeakGoblin v${VERSION} 🛡️
